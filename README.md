@@ -11,7 +11,6 @@
     <a href="#-funcionalidades">Funcionalidades</a> •
     <a href="#-arquitetura-e-lógica">Arquitetura</a> •
     <a href="#-objetivos">Objetivos</a> •
-    <a href="#-tecnologias">Tecnologias</a>
   </p>
 </div>
 
@@ -78,28 +77,3 @@ Este projeto visa apresentar uma ferramenta concreta e funcional para casos prá
 - [ ] **Interatividade:** Criar componentes visuais (barras, mapas, etc.) responsivos.
 - [ ] **Performance:** Realizar testes de carga e eficiência na renderização.
 
----
-
-## 🛠️ Tecnologias Utilizadas
-
-* **Frontend:** React / Vue / Angular (Preencher)
-* **Backend:** Node.js / Python / Java (Preencher)
-* **Banco de Dados:** PostgreSQL / MySQL / SQL Server
-* **Bibliotecas de Gráficos:** Chart.js / D3.js / Recharts (Preencher)
-
----
-
-## 🏁 Como Executar o Projeto
-
-```bash
-# Clone este repositório
-$ git clone [https://github.com/seu-usuario/dreamboards.git](https://github.com/seu-usuario/dreamboards.git)
-
-# Acesse a pasta do projeto
-$ cd dreamboards
-
-# Instale as dependências
-$ npm install
-
-# Execute a aplicação em modo de desenvolvimento
-$ npm run dev
