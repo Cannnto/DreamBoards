@@ -29,15 +29,6 @@ Muitas organizações geram grandes volumes de dados, mas falham em transformá-
 
 ---
 
-## 📸 Screenshots
-
-<div align="center">
-  <img src="https://via.placeholder.com/800x400?text=Dashboard+Preview+DreamBoards" alt="Preview do DreamBoards" width="100%">
-  <p><em>Figura 1.1: Exemplo de visualização de dados (Vendas, Despesas e Lucros).</em></p>
-</div>
-
----
-
 ## 🚀 Funcionalidades
 
 O sistema foi projetado para oferecer flexibilidade total na manipulação de campos e relacionamentos:
