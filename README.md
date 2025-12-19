@@ -4,7 +4,6 @@
   **Transformando dados brutos em inteligência visual.**
 
   [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-  [![Status](https://img.shields.io/badge/status-Em_Desenvolvimento-orange.svg)]()
   [![Version](https://img.shields.io/badge/version-1.0.0-green.svg)]()
 
   <p align="center">
