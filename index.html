@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="imgs/favicon.png" type="image/x-icon">
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+          <!-- <a href="./index.html"> 
+            <img src="imgs/login_white2.png" class="icons" alt="icons"> 
+            <img src="imgs/ministério.png" class="icons" alt="icons">
+            <img src="imgs/Logo_GovFed_Branco.png" class="icons" alt="icons">
+          </a> -->
+          <img src="imgs/settings_white.png" class="config" alt="config">
+          <h1> Video Games </h1>
+      </header>
+      <aside>
+        <div class="options">
+            <div class="filtros">
+              <h1>Filtros</h1>
+              <div class="fitlerOptions">
+                <div class="allselectFilter">
+                
+                </div>
+                <div class="allbuttonsFilter">
+                  <button class="addFilterButton">+</button>
+                </div>
+              </div>
+            </div>
+            <div class="graficos">
+              <h1>Gráficos</h1>
+              <div class="graphicOptions">
+                <div class="allselectGraphics">
+
+                </div>
+                <div class="allbuttonsGraphics">
+                  <button class="addGraphicButton">+</button>
+                </div>
+              </div>
+            </div>
+            <button class="butoes gerar">Gerar</button>
+            <button class="butoes" onclick="window.location.reload()">Limpar</button>
+          </div>
+      </aside>
+      <main>
+      </main>
+      <!-- <footer>
+        <p><strong>Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Sul – Campus Rio Grande</strong></p>
+          <div class="footer-info">
+              <div class="bl1">
+                <p>Rua Engenheiro Alfredo Huch, 475 | Bairro Centro | CEP: 96201-460 |</p>
+                <p>Rio Grande/RS | CNPJ: 10.637.526/0005-70</p>
+              </div>
+              <div class="bl2">
+                <p>E-mail: comunicacao@riogrande.ifrs.edu.br</p>
+                <p>Telefone: (53) 3233-8681</p>
+              </div>
+          </div>
+          <a href="./files.html" class="archives" title="Documentos"></a>
+          <a href="./equipe.html" class="team-gallery-icon" title="Nossa Equipe"></a>
+      </footer> -->
+    </div>
+    <!-- ChartsAPI -->
+    <script src="graphic_library/main.js"></script>
+    <script src="graphic_library/modules/exporting.js"></script>
+    <script src="graphic_library/modules/export-data.js"></script>
+    <script src="graphic_library/modules/exporting-off.js"></script>
+    <script src="graphic_library/modules/sunburst.js"></script>
+    <script src="graphic_library/modules/map.js"></script>
+    <script src="graphic_library/modules/point.js"></script>
+    
+    <!-- SqliteConfig -->
+    <script src="jswasm/sqlite3.js"></script>
+    <script type="module">
+      import query from "./Database.mjs";
+      import banco from "./Banco.mjs";
+
+
+
+      var JSONBanco = (JSON.stringify(banco)).replaceAll('"', "").replaceAll("[", "").replaceAll("]", "");
+      var coluns = 'a,b,c,d,e,f,g,h,i,j,k';
+      
+      query(`create table idosos(${coluns})`);
+      query(`insert into idosos(${coluns}) values ${JSONBanco}`);
+    </script>
+    <script type="module" src="Main.js"></script>
+
+    <script>
+      document.querySelector(".config").addEventListener("click", () => 
+      {   let main = document.querySelector('main').style.width;
+          if(main == "" || main=="100vw")
+          {   
+              document.querySelector('header').style.width =  document.querySelector('main').style.width = "65vw";
+              document.querySelector('header').style.marginLeft = document.querySelector('main').style.marginLeft = "35vw";
+              document.querySelector('aside').style.left = "0px";
+          }
+          else
+          {   
+              document.querySelector('header').style.width = document.querySelector('main').style.width = "100vw";
+              document.querySelector('header').style.marginLeft = document.querySelector('main').style.marginLeft = "0vw";
+              document.querySelector('aside').style.left = "-35vw";
+          }
+      });
+    </script>
+  </body>
+</html>

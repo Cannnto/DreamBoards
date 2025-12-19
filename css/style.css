@@ -1,0 +1,705 @@
+/* ============================================= */
+/* CONFIGURAÇÕES GLOBAIS E PALETA AZUL FUTURISTA */
+/* Paleta inspirada em tecnologia e futuro com tons de azul neon */
+/* ============================================= */
+:root {
+    /* Cores Futuristas Azuis */
+    --cyber-blue: #00d4ff;        /* Azul cibernético principal */
+    --cyber-blue-dark: #0099cc;   /* Azul escuro para hover */
+    --neon-blue: #00ffff;         /* Azul neon brilhante */
+    --deep-blue: #0a1929;         /* Azul escuro profundo para fundos */
+    --bg-primary: #0d1b2a;        /* Fundo principal (azul muito escuro) */
+    --bg-secondary: #1b263b;      /* Fundo de painéis e cards */
+    --bg-card: #162033;           /* Fundo alternativo para cards */
+    --border-color: #1e3a5f;      /* Cor para bordas com brilho sutil */
+    --accent-primary: #00d4ff;    /* Tom de destaque principal */
+    --accent-secondary: #4cc9f0;  /* Tom de destaque secundário */
+    --accent-hover: #00ffff;      /* Hover neon */
+    --text-primary: #e0f4ff;      /* Cor de texto principal (azul muito claro) */
+    --text-secondary: #8ab4f8;    /* Cor de texto secundário (azul claro) */
+    --glow-color: rgba(0, 212, 255, 0.4); /* Cor de brilho neon */
+    --glow-strong: rgba(0, 255, 255, 0.6); /* Brilho forte */
+    
+    /* Propriedades de Estilo */
+    --font-family: 'Rajdhani', 'Orbitron', 'Segoe UI', sans-serif;
+    --border-radius: 8px;
+    --shadow: 0 4px 20px rgba(0, 212, 255, 0.2);
+    --shadow-hover: 0 8px 30px rgba(0, 255, 255, 0.4);
+    --shadow-neon: 0 0 20px var(--glow-color), 0 0 40px var(--glow-color);
+    --transition-speed: 0.3s;
+}
+
+/* Animação para os cards surgirem na tela */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes neonPulse {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--glow-color), 0 0 10px var(--glow-color);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--glow-strong), 0 0 20px var(--glow-strong);
+    }
+}
+
+/* ============================================= */
+/* ESTILOS GLOBAIS                              */
+/* ============================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+}
+
+html, body {
+    font-family: var(--font-family);
+    background-color: var(--bg-primary);
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.05) 0%, transparent 50%);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+img {
+    vertical-align: middle;
+}
+
+/* ============================================= */
+/* LAYOUT PRINCIPAL (HEADER, MAIN, ASIDE) */
+/* ============================================= */
+.container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 58px auto 5vw;
+    grid-template-areas: "." 
+                         "main" 
+                         "footer";
+}
+
+header {
+    width: 100vw;
+    height: 58px;
+    position: fixed;
+    background: linear-gradient(135deg, #0a1929 0%, #1b263b 50%, #0d1b2a 100%);
+    border-bottom: 2px solid var(--cyber-blue);
+    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3), 0 0 40px rgba(0, 212, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2vw;
+    transition: all var(--transition-speed) ease-out;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+}
+
+header > a {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.H_L-credits {
+    display: none;
+}
+
+.icons {
+    height: 45px;
+    width: auto;
+    filter: drop-shadow(0 0 8px var(--cyber-blue));
+}
+
+header img, .envelhecerIcon {
+    height: 28px;
+    width: 28px;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    filter: brightness(1.2) drop-shadow(0 0 5px var(--cyber-blue));
+}
+
+.envelhecerIcon {
+    position: absolute;
+    right: calc(50% - 48.5px);
+    width: 97px;
+}
+
+header img.config:hover {
+    transform: rotate(360deg) scale(1.2);
+    filter: brightness(1.5) drop-shadow(0 0 15px var(--neon-blue));
+}
+
+aside {
+    width: 35vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -35vw;
+    z-index: 100;
+    background: linear-gradient(180deg, #1b263b 0%, #0d1b2a 100%);
+    border-right: 2px solid var(--cyber-blue);
+    box-shadow: 5px 0 30px rgba(0, 212, 255, 0.3);
+    transition: left var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    overflow: auto;
+}
+
+main {
+    grid-area: main;
+    padding: 2vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+    justify-content: center;
+    align-content: flex-start;
+    transition: all var(--transition-speed) ease-out;
+}
+
+/* ============================================= */
+/* ELEMENTOS DO PAINEL LATERAL (ASIDE)   */
+/* ============================================= */
+aside .options {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    height: 100%;
+}
+
+.filtros, .graficos {
+    display: flex;
+    flex-direction: column;
+}
+
+.fitlerOptions, .graphicOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+aside h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--cyber-blue);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 3px solid var(--cyber-blue);
+    text-shadow: 0 0 10px var(--glow-color);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.allselectFilter, .allselectGraphics {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: auto;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    cursor: pointer;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns="http://www.w3.org/2000/svg" width="292.4" height="292.4" viewBox="0 0 292.4 292.4"%3E%3Cpath fill="%2300d4ff" d="M287 69.4a17.6 17.6 0 0 0-13-5.4H18.4c-5 0-9.3 1.8-12.9 5.4A17.6 17.6 0 0 0 0 82.2c0 5 1.8 9.3 5.4 12.9l128 127.9c3.6 3.6 7.8 5.4 12.8 5.4s9.2-1.8 12.8-5.4L287 95c3.5-3.5 5.4-7.8 5.4-12.8 .1-5-1.8-9.3-5.5-12.8z"/%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 12px;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.1);
+}
+
+select:hover {
+    border-color: var(--cyber-blue);
+    box-shadow: 0 0 15px var(--glow-color);
+    background-color: var(--bg-card);
+}
+
+button {
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 5px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+.butoes {
+    padding: 14px 22px;
+}
+
+.allbuttonsFilter {
+    width: 100%;
+}
+
+.allbuttonsFilter button, .allbuttonsGraphics button {
+    background-color: transparent;
+    color: var(--cyber-blue);
+    border: 2px solid var(--cyber-blue);
+    width: 100%;
+    height: 55px;
+    align-self: center;
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+}
+
+.removeButton {
+    background-image: url("/imgs/trash.png");
+}
+
+.removeButton:hover {
+    border-color: var(--neon-blue);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--glow-strong);
+}
+
+.allbuttonsFilter button:hover, .allbuttonsGraphics button:hover {
+    background-color: var(--cyber-blue);
+    color: var(--deep-blue);
+    box-shadow: 0 0 20px var(--glow-strong);
+}
+
+.options > button {
+    width: 100%;
+}
+
+button.gerar {
+    background: linear-gradient(135deg, var(--cyber-blue) 0%, var(--accent-secondary) 100%);
+    color: var(--deep-blue);
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+    font-weight: 900;
+}
+
+button[onclick="render()"]:hover {
+    background: linear-gradient(135deg, var(--neon-blue) 0%, var(--cyber-blue) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--glow-strong);
+}
+
+button[onclick="window.location.reload()"] {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: 2px solid var(--border-color);
+}
+
+button[onclick="window.location.reload()"]:hover {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--cyber-blue);
+}
+
+/* Customizations for the Footer */
+footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px 2vw;
+    background: linear-gradient(135deg, #0a1929 0%, #1b263b 100%);
+    border-top: 2px solid var(--cyber-blue);
+    box-shadow: 0 -4px 20px rgba(0, 212, 255, 0.3);
+    color: var(--text-primary);
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    transition: all var(--transition-speed) ease-out;
+}
+
+footer > p {
+    font-size: .9vw;
+    margin-bottom: .5vw;
+    text-shadow: 0 0 5px var(--glow-color);
+}
+
+.footer-info {
+    font-size: .7vw;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+}
+
+.footer-info div {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================= */
+/* ESTILOS DO GRID DE FOTOS DA EQUIPE           */
+/* ============================================= */
+.photo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+    justify-content: center;
+    width: 100%;
+}
+
+.grid-item {
+    flex-basis: calc(25% - 2vw);
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-card) 100%);
+    border-radius: var(--border-radius);
+    border: 2px solid var(--border-color);
+    box-shadow: var(--shadow);
+    transition: all var(--transition-speed);
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+}
+
+.grid-item:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--cyber-blue);
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.9);
+    transition: filter var(--transition-speed);
+}
+
+.grid-item:hover img {
+    filter: brightness(1.1);
+}
+
+/* ============================================= */
+/* AJUSTES RESPONSIVOS PARA O GRID DE FOTOS     */
+/* ============================================= */
+@media (max-width: 1200px) {
+    .grid-item {
+        flex-basis: calc(33.333% - 2vw);
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-item {
+        flex-basis: calc(50% - 4vw);
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-item {
+        flex-basis: 100%;
+    }
+}
+
+/* ============================================= */
+/* CONTEÚDO PRINCIPAL (GRÁFICOS)       */
+/* ============================================= */
+main .dash-title {
+    width: 100%;
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--cyber-blue);
+    margin-bottom: 1rem;
+    flex-basis: 100%;
+    text-shadow: 0 0 20px var(--glow-color);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+main div[id^="chart"] {
+    width: calc(50% - 1vw);
+    height: 420px;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-card) 100%);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    transition: all var(--transition-speed);
+    animation: fadeInUp 0.5s ease-out forwards;
+    opacity: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+main div[id^="chart"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyber-blue), transparent);
+    animation: scanline 3s linear infinite;
+}
+
+@keyframes scanline {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+main div:nth-child(2) { animation-delay: 0.1s; }
+main div:nth-child(3) { animation-delay: 0.2s; }
+main div:nth-child(4) { animation-delay: 0.3s; }
+main div:nth-child(5) { animation-delay: 0.4s; }
+
+main div[id^="chart"]:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--cyber-blue);
+}
+
+.H_L-container, .H_L-root {
+    border-radius: var(--border-radius);
+}
+
+@media (max-width: 1200px) {
+    main div[id^="chart"] {
+        width: 100%;
+        max-width: 700px;
+        height: 380px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-rows: 60px 1fr;
+    }
+
+    main {
+        padding: 4vw;
+        gap: 4vw;
+    }
+
+    main .dash-title {
+        font-size: 1.8rem;
+    }
+}
+
+.allselectGraphics > div, .allselectFilter > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.allselectGraphics input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.butWhere {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2300d4ff"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>');
+}
+
+.butWhere:hover {
+    border-color: var(--neon-blue);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2300ffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>');
+    scale: 1.1;
+    box-shadow: 0 0 15px var(--glow-strong);
+}
+
+.allselectGraphics label, .allselectFilter label {
+    width: 55px;
+    height: 55px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: 55%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--bg-secondary);
+    transition: all var(--transition-speed) ease;
+}
+
+.allselectGraphics label:hover {
+    border-color: var(--cyber-blue);
+    background-color: var(--bg-card);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+.allselectGraphics label:has(input[value="1"]) {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2300d4ff"><path d="M4 20h3V9H4v11zM10.5 20h3V4h-3v16zM17 20h3V13h-3v7z"/></svg>');
+}
+
+.floatDivWhere {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-card) 100%);
+    padding: 1vw;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    gap: 1vw;
+    transition: all var(--transition-speed) ease;
+    z-index: 100;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+}
+
+.floatDivWhere > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.floatDivWhere div label:first-of-type {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2300d4ff"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>');
+}
+
+.floatDivWhere div label:last-of-type {
+    background-image: url("/imgs/trash.png");
+    background-size: 45%;
+}
+
+.floatDivWhere div label {
+    width: 40px;
+    height: 40px;
+}
+
+.floatDivWhere div label:hover, .floatDivWhere:hover {
+    border-color: var(--cyber-blue);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+.floatDivWhere select {
+    background-color: var(--bg-card);
+    background-image: none;
+}
+
+.allselectGraphics label:has(input:checked) {
+    background-color: var(--cyber-blue);
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 20px var(--glow-strong);
+    animation: neonPulse 2s infinite;
+}
+
+.allselectGraphics label:has(input[value="1"]:checked) {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%230a1929"><path d="M4 20h3V9H4v11zM10.5 20h3V4h-3v16zM17 20h3V13h-3v7z"/></svg>');
+}
+
+.allselectGraphics label:has(input[value="2"]) {
+    background-image: url('/imgs/ico_n.png');
+}
+
+.allselectGraphics label:has(input[value="2"]:checked) {
+    background-image: url('/imgs/ico_i.png');
+}
+
+.allselectGraphics label:has(input[value="3"]) {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2300d4ff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>');
+}
+
+.allselectGraphics label:has(input[value="3"]:checked) {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%230a1929"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>');
+}
+
+.H_L-breadcrumbs-group.H_L-no-tooltip {
+    display: none;
+}
+
+footer a {
+    display: block;
+    width: 3vw;
+    height: 3vw;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    position: absolute;
+    filter: drop-shadow(0 0 8px var(--cyber-blue));
+}
+
+.team-gallery-icon {
+    right: 2%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2300d4ff"><path d="M19 5H5c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 12H5V7h14v10zM9.5 11.5l2.5 3.01L14.5 11l3.5 4.99H7l2.5-3.5z"/></svg>');
+}
+
+.archives {
+    right: 6%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2300d4ff"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM13 9V3.5L18.5 9H13z"/></svg>');
+}
+
+.team-gallery-icon:hover, .archives:hover {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 20px var(--neon-blue));
+}
+
+.allFiles {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.files, .home {
+    padding: 1vw;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: 55%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--bg-secondary);
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+}
+
+.files:hover, .home:hover {
+    border-color: var(--cyber-blue);
+    background-color: var(--bg-card);
+    box-shadow: 0 0 20px var(--glow-strong);
+}
+
+.home {
+    position: absolute;
+    width: 3vw;
+    height: 3vw;
+    left: 3vw;
+    backgroun
